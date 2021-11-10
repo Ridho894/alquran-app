@@ -1,14 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 
-const Home = () => {
+export default function Home() {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <ScrollView
+      style={{ backgroundColor: "white" }}
+      showsVerticalScrollIndicator={false}
+    >
+      <View>
+        <Text>Home</Text>
+      </View>
+    </ScrollView>
   );
-};
-
-export default Home;
-
-const styles = StyleSheet.create({});
+}

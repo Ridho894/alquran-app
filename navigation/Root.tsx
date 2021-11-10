@@ -3,12 +3,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 export const Root = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
-        </Stack.Navigator>
-    )
-}
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerTitleAlign: "center", headerShadowVisible: false }}
+      />
+    </Stack.Navigator>
+  );
+};
