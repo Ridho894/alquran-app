@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
+import TimeBox from "../components/TimeBox";
 
 export default function Home() {
   return (
@@ -7,8 +8,8 @@ export default function Home() {
       style={{ backgroundColor: "white" }}
       showsVerticalScrollIndicator={false}
     >
-      <View>
-        <Text>Home</Text>
+      <View style={{ margin: 20 }}>
+        <TimeBox />
       </View>
     </ScrollView>
   );
