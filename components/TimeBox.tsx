@@ -8,7 +8,7 @@ const TimeBox = () => {
     <View
       style={{
         backgroundColor: Color.green,
-        borderRadius: 5,
+        borderRadius: 20,
         alignItems: "center",
       }}
     >

@@ -37,13 +37,17 @@ const DashboardSurah = (props: HomeScreenProps) => {
 
   const SurahItem = (props: SurahItemProps) => {
     return (
-      <Fragment>
+      <View style={{ paddingVertical: 20 }}>
         <TouchableNativeFeedback onPress={props.onPress}>
           <View>
-            <Text>{props.data.surah_name}</Text>
+            <Text>{props.data.surah_id}</Text>
+            <View>
+              <Text>{props.data.surah_name_arabic}</Text>
+              <Text>{props.data.surah_name}</Text>
+            </View>
           </View>
         </TouchableNativeFeedback>
-      </Fragment>
+      </View>
     );
   };
 
