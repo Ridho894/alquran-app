@@ -8,16 +8,40 @@ import { Feather } from "@expo/vector-icons";
 import moment from "moment";
 import DashboardSurah from "../screens/DashboardSurah";
 import { Color } from "../utils/Color";
+import DetailSurah from "../screens/DetailSurah";
 
 const Stack = createNativeStackNavigator();
 
-export const HomeStack = () => {
+export const HomeStack = ({ navigation }: any) => {
   return (
     <Stack.Navigator
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: true }}
       initialRouteName={"Home"}
     >
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          headerTitleAlign: "center",
+          headerRight: () => (
+            <TouchableWithoutFeedback>
+              <Feather name="compass" color="black" size={25} />
+            </TouchableWithoutFeedback>
+          ),
+          headerLeft: () => (
+            <Feather
+              name="book-open"
+              color="black"
+              size={25}
+              onPress={() =>
+                navigation.navigate("SurahStack", {
+                  screen: "DashboardSurah",
+                })
+              }
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -29,6 +53,7 @@ export const SurahStack = () => {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="DashboardSurah" component={DashboardSurah} />
+      <Stack.Screen name="DetailSurah" component={DetailSurah} />
     </Stack.Navigator>
   );
 };

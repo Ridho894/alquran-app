@@ -19,27 +19,7 @@ const Root = ({ navigation }: StackScreenProps<any>) => {
         <Stack.Screen
           name="HomeStack"
           component={HomeStack}
-          options={{
-            headerTitleAlign: "center",
-            headerShadowVisible: false,
-            headerRight: () => (
-              <TouchableWithoutFeedback>
-                <Feather name="compass" color="black" size={25} />
-              </TouchableWithoutFeedback>
-            ),
-            headerLeft: () => (
-              <Feather
-                name="book-open"
-                color="black"
-                size={25}
-                onPress={() =>
-                  navigation.navigate("SurahStack", {
-                    screen: "DashboardSurah",
-                  })
-                }
-              />
-            ),
-          }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen name="SurahStack" component={SurahStack} />
       </Stack.Navigator>

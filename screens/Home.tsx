@@ -10,13 +10,6 @@ const Home = ({ navigation }: any) => {
     >
       <View style={{ margin: 20 }}>
         <TimeBox />
-        <TouchableWithoutFeedback
-          onPress={() =>
-            navigation.navigate("SurahStack", { screen: "DashboardSurah" })
-          }
-        >
-          <Text>GO</Text>
-        </TouchableWithoutFeedback>
       </View>
     </ScrollView>
   );

@@ -59,7 +59,7 @@ const DashboardSurah = (props: HomeScreenProps) => {
           keyExtractor={(s) => `${s.surah_id}`}
           renderItem={({ item, index }) => {
             const onPress = () => {
-              props.navigation.navigate("Detail", {
+              props.navigation.navigate("DetailSurah", {
                 surahNumber: item.surah_id,
               });
             };
