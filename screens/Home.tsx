@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, TouchableWithoutFeedback } from "react-native";
 import TimeBox from "../components/TimeBox";
 
-const Home = ({ navigation }: any) => {
+const Home = () => {
   return (
     <ScrollView
       style={{ backgroundColor: "white" }}

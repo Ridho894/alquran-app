@@ -9,6 +9,7 @@ import moment from "moment";
 import DashboardSurah from "../screens/DashboardSurah";
 import { Color } from "../utils/Color";
 import DetailSurah from "../screens/DetailSurah";
+import PrayerSchedule from "../screens/PrayerSchedule";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,26 +35,26 @@ export const HomeStack = ({ navigation }: any) => {
               color="black"
               size={25}
               onPress={() =>
-                navigation.navigate("SurahStack", {
-                  screen: "DashboardSurah",
-                })
+                navigation.navigate("DashboardSurah")
               }
             />
           ),
         }}
       />
+      <Stack.Screen name="DashboardSurah" component={DashboardSurah} />
+      <Stack.Screen name="DetailSurah" component={DetailSurah} />
+      <Stack.Screen name="PrayerSchedule" component={PrayerSchedule} />
     </Stack.Navigator>
   );
 };
 
-export const SurahStack = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName={"DashboardSurah"}
-      screenOptions={{ headerShown: false }}
-    >
-      <Stack.Screen name="DashboardSurah" component={DashboardSurah} />
-      <Stack.Screen name="DetailSurah" component={DetailSurah} />
-    </Stack.Navigator>
-  );
-};
+// export const SurahStack = () => {
+//   return (
+//     <Stack.Navigator
+//       initialRouteName={"DashboardSurah"}
+//       screenOptions={{ headerShown: false }}
+//     >
+      
+//     </Stack.Navigator>
+//   );
+// };

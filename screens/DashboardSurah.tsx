@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import QuranKemenag from "quran-kemenag";
 import { Surah } from "quran-kemenag/dist/intefaces";
+import { Color } from "../utils/Color";
 
 interface HomeScreenProps {
   navigation: any;
@@ -39,11 +40,40 @@ const DashboardSurah = (props: HomeScreenProps) => {
     return (
       <View style={{ paddingVertical: 20 }}>
         <TouchableNativeFeedback onPress={props.onPress}>
-          <View>
-            <Text>{props.data.surah_id}</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: Color.lightBrown,
+                  height: 40,
+                  width: 40,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 50,
+                }}
+              >
+                <Text style={{ color: Color.lightWhite }}>
+                  {props.data.surah_id}
+                </Text>
+              </View>
+              <View style={{ left: 20 }}>
+                <Text>{props.data.surah_name}</Text>
+                <Text>{`${props.data.surah_name_bahasa} ${props.data.surah_verse_count}`}</Text>
+              </View>
+            </View>
             <View>
               <Text>{props.data.surah_name_arabic}</Text>
-              <Text>{props.data.surah_name}</Text>
             </View>
           </View>
         </TouchableNativeFeedback>
@@ -52,26 +82,25 @@ const DashboardSurah = (props: HomeScreenProps) => {
   };
 
   return (
-    <ScrollView>
-      <View style={{ margin: 20 }}>
-        <FlatList
-          data={listOfSurah}
-          keyExtractor={(s) => `${s.surah_id}`}
-          renderItem={({ item, index }) => {
-            const onPress = () => {
-              props.navigation.navigate("DetailSurah", {
-                surahNumber: item.surah_id,
-              });
-            };
-            return (
-              <View>
-                <SurahItem key={index} data={item} onPress={onPress} />
-              </View>
-            );
-          }}
-        />
-      </View>
-    </ScrollView>
+    <View>
+      <FlatList
+        data={listOfSurah}
+        keyExtractor={(s) => `${s.surah_id}`}
+        renderItem={({ item, index }) => {
+          const onPress = () => {
+            props.navigation.navigate("DetailSurah", {
+              surahNumber: item.surah_id,
+            });
+          };
+          return (
+            <View style={{ marginHorizontal: 20 }}>
+              <SurahItem key={index} data={item} onPress={onPress} />
+            </View>
+          );
+        }}
+        nestedScrollEnabled={false}
+      />
+    </View>
   );
 };
 
