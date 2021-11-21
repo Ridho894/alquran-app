@@ -73,7 +73,9 @@ const DashboardSurah = (props: HomeScreenProps) => {
               </View>
             </View>
             <View>
-              <Text>{props.data.surah_name_arabic}</Text>
+              <Text style={{ fontSize: 25 }}>
+                {props.data.surah_name_arabic}
+              </Text>
             </View>
           </View>
         </TouchableNativeFeedback>

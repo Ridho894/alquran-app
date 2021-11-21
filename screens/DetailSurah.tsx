@@ -23,7 +23,7 @@ const VerseItem = (props: VerseItemProps) => {
           justifyContent: "space-between",
         }}
       >
-        <Text>{props.data.verse_id}</Text>
+        <Text>{props.data.verse_number}</Text>
         <Text style={{ fontSize: 30 }}>{props.data.verse_arabic}</Text>
       </View>
       <Text>{props.data.verse_bahasa}</Text>

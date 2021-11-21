@@ -3,7 +3,11 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Color } from "../utils/Color";
 import { Size } from "../utils/Size";
 
-const TimeBox = ({ navigation }: any) => {
+interface TimeBoxProps {
+  onPress: () => void;
+}
+
+const TimeBox = (props: TimeBoxProps) => {
   const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
@@ -11,10 +15,9 @@ const TimeBox = ({ navigation }: any) => {
     var minutes = new Date().getUTCMinutes();
     setCurrentDate(hours + ":" + minutes);
   }, []);
+
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate("PrayerSchedule")}
-    >
+    <TouchableOpacity onPress={props.onPress}>
       <View
         style={{
           backgroundColor: Color.darkRed,
