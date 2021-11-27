@@ -5,13 +5,16 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import { Feather } from "@expo/vector-icons";
-import moment from "moment";
-import DashboardSurah from "../screens/DashboardSurah";
 import { Color } from "../utils/Color";
+import DashboardSurah from "../screens/SurahJuz/DashboardSurah";
 import DetailSurah from "../screens/DetailSurah";
 import PrayerSchedule from "../screens/PrayerSchedule";
+import DashboardJuz from "../screens/SurahJuz/DashboardJuz";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Dashboard from "../screens/SurahJuz/Dashboard";
 
 const Stack = createNativeStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
 export const HomeStack = ({ navigation }: any) => {
   return (
@@ -34,27 +37,43 @@ export const HomeStack = ({ navigation }: any) => {
               name="book-open"
               color="black"
               size={25}
-              onPress={() =>
-                navigation.navigate("DashboardSurah")
-              }
+              onPress={() => navigation.navigate("Dashboard")}
             />
           ),
         }}
       />
-      <Stack.Screen name="DashboardSurah" component={DashboardSurah} />
+      <Stack.Screen
+        name="Dashboard"
+        component={SurahStack}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="DetailSurah" component={DetailSurah} />
       <Stack.Screen name="PrayerSchedule" component={PrayerSchedule} />
     </Stack.Navigator>
   );
 };
 
-// export const SurahStack = () => {
-//   return (
-//     <Stack.Navigator
-//       initialRouteName={"DashboardSurah"}
-//       screenOptions={{ headerShown: false }}
-//     >
-      
-//     </Stack.Navigator>
-//   );
-// };
+export const SurahStack = () => {
+  return (
+    <>
+      <Dashboard />
+      <TopTab.Navigator
+        initialRouteName={"DashboardSurah"}
+        screenOptions={{
+          tabBarIndicatorStyle: { backgroundColor: Color.darkRed },
+        }}
+      >
+        <TopTab.Screen
+          name="DashboardSurah"
+          component={DashboardSurah}
+          options={{ title: "Surah" }}
+        />
+        <TopTab.Screen
+          name="DashboardJuz"
+          component={DashboardJuz}
+          options={{ title: "Juz" }}
+        />
+      </TopTab.Navigator>
+    </>
+  );
+};

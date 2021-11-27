@@ -1,15 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  ScrollView,
-  TouchableNativeFeedback,
-} from "react-native";
+import { Text, View, FlatList, TouchableNativeFeedback } from "react-native";
 import QuranKemenag from "quran-kemenag";
 import { Surah } from "quran-kemenag/dist/intefaces";
-import { Color } from "../utils/Color";
+import { Color } from "../../utils/Color";
 
 interface HomeScreenProps {
   navigation: any;
@@ -107,5 +100,3 @@ const DashboardSurah = (props: HomeScreenProps) => {
 };
 
 export default DashboardSurah;
-
-const styles = StyleSheet.create({});

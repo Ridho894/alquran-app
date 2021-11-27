@@ -15,7 +15,7 @@ interface VerseItemProps {
 
 const VerseItem = (props: VerseItemProps) => {
   return (
-    <View style={{ paddingBottom: 50 }}>
+    <View style={{ paddingBottom: 20 }}>
       <View
         style={{
           flexDirection: "row",
@@ -23,8 +23,22 @@ const VerseItem = (props: VerseItemProps) => {
           justifyContent: "space-between",
         }}
       >
-        <Text>{props.data.verse_number}</Text>
-        <Text style={{ fontSize: 30 }}>{props.data.verse_arabic}</Text>
+        <Text
+          style={{
+            backgroundColor: Color.lightBrown,
+            padding: 5,
+            height: 30,
+            width: 30,
+            textAlign: "center",
+            borderRadius: 20,
+            color: "white",
+          }}
+        >
+          {props.data.verse_number}
+        </Text>
+        <Text style={{ fontSize: 20, margin: 10 }}>
+          {props.data.verse_arabic}
+        </Text>
       </View>
       <Text>{props.data.verse_bahasa}</Text>
     </View>
