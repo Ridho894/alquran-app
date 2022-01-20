@@ -1,20 +1,21 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Color } from "../utils/Color";
-import { Size } from "../utils/Size";
 
 interface TimeBoxProps {
   onPress: () => void;
+  regionName: string;
 }
 
 const TimeBox = (props: TimeBoxProps) => {
-  const [currentDate, setCurrentDate] = useState("");
+  const [time, setTime] = useState("");
 
-  useEffect(() => {
-    var hours = new Date().getHours();
-    var minutes = new Date().getUTCMinutes();
-    setCurrentDate(hours + ":" + minutes);
-  }, []);
+  setInterval(() => {
+    var date = moment().format("LTS");
+    setTime(date);
+  }, 1000);
+
 
   return (
     <TouchableOpacity onPress={props.onPress}>
@@ -27,20 +28,13 @@ const TimeBox = (props: TimeBoxProps) => {
       >
         <View style={{ margin: 20 }}>
           <Text style={{ color: Color.lightWhite, textAlign: "center" }}>
-            Dzuhur
-          </Text>
-          <Text
-            style={{
-              color: Color.lightWhite,
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: Size.extraLarge,
-            }}
-          >
-            {currentDate}
+            {time}
           </Text>
           <Text style={{ color: Color.lightWhite, textAlign: "center" }}>
-            Alamat
+            Dzuhur
+          </Text>
+          <Text style={{ color: Color.lightWhite, textAlign: "center" }}>
+            {props.regionName}
           </Text>
         </View>
       </View>

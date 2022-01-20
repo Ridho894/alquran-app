@@ -12,6 +12,7 @@ import PrayerSchedule from "../screens/PrayerSchedule";
 import DashboardJuz from "../screens/SurahJuz/DashboardJuz";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Dashboard from "../screens/SurahJuz/Dashboard";
+import DailyDoa from "../screens/SurahJuz/DailyDoa";
 
 const Stack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -75,5 +76,13 @@ export const SurahStack = () => {
         />
       </TopTab.Navigator>
     </>
+  );
+};
+
+export const DoaStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="DailyDoa" component={DailyDoa} />
+    </Stack.Navigator>
   );
 };

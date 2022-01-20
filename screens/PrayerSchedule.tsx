@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import moment from "moment";
+import { formatDateCompare, getHourAndMinutes, unixTime } from "../utils/Date";
+import { Divider } from "react-native-paper";
+import { Color } from "../utils/Color";
 
-let myArray: string[] = [];
+interface Compare {
+  firstTime: Date;
+  lastTime: Date;
+}
 
-const PrayerSchedule = () => {
+const PrayerSchedule = ({ dateNow }: any) => {
+  const [time, setTime] = useState("");
   const date = new Date();
-  const formatDate = moment(date).format("DD-MM-YYYY");
+
   const [timeSchedule, setTimeSchedule] = useState<any>({});
+  console.log(timeSchedule);
   const getMyData = async () => {
     const url = await fetch(
       `https://api.pray.zone/v2/times/today.json?city=yogyakarta`
@@ -16,28 +24,151 @@ const PrayerSchedule = () => {
     const jadwalBaru = data.results.datetime;
     setTimeSchedule(jadwalBaru);
     for (let i = 0; i < data.results.length; i++) {
-      myArray.push(data.results[i].datetime);
       setTimeSchedule(data.results[i].datetime);
     }
   };
   useEffect(() => {
     getMyData();
   }, []);
-  console.log(timeSchedule);
-  // console.log(myArray, "array")
+  const compareDate = (props: Compare) => {
+    return (
+      Date.parse(`${formatDateCompare(date)}`) >
+        Date.parse(
+          `${unixTime(dateNow)} ${getHourAndMinutes(props.firstTime)}:00`
+        ) &&
+      Date.parse(`${formatDateCompare(date)}`) <
+        Date.parse(
+          `${unixTime(dateNow)} ${getHourAndMinutes(props.lastTime)}:00`
+        )
+    );
+  };
   return (
     <View style={{ margin: 20 }}>
-      <Text>PrayerSchedule</Text>
       <FlatList
         data={timeSchedule}
         renderItem={({ item }) => {
+          const Shubuh = item.times.Fajr;
+          const Dhuhur = item.times.Dhuhr;
+          const Ashar = item.times.Asr;
+          const Maghrib = item.times.Maghrib;
+          const Isya = item.times.Isha;
+          // if (time < Isya) {
+          //   console.log("Menuju Isya");
+          // }
+          console.log(time)
           return (
             <View key={item.date.gregorian}>
-              <Text>{item.times.Fajr}</Text>
-              <Text>{item.times.Dhuhr}</Text>
-              <Text>{item.times.Asr}</Text>
-              <Text>{item.times.Maghrib}</Text>
-              <Text>{item.times.Isha}</Text>
+              <View>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    color: Color.darkRed,
+                    fontWeight: "bold",
+                    fontSize: 30,
+                  }}
+                >
+                  {item.date.gregorian}
+                </Text>
+                <Text style={{ textAlign: "center", color: "gray" }}>
+                  {item.date.hijri}
+                </Text>
+              </View>
+              <Divider
+                style={{
+                  borderWidth: 0.7,
+                  borderColor: Color.lightBrown,
+                  marginVertical: 10,
+                  backgroundColor: Color.lightBrown,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text>Shubuh</Text>
+                <Text>{Shubuh} (WIB)</Text>
+              </View>
+              <Divider
+                style={{
+                  borderWidth: 0.7,
+                  borderColor: Color.lightBrown,
+                  marginVertical: 10,
+                  backgroundColor: Color.lightBrown,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text>Dhuhur</Text>
+                <Text>{Dhuhur} (WIB)</Text>
+              </View>
+              <Divider
+                style={{
+                  borderWidth: 0.7,
+                  borderColor: Color.lightBrown,
+                  marginVertical: 10,
+                  backgroundColor: Color.lightBrown,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text>Ashar</Text>
+                <Text>{Ashar} (WIB)</Text>
+              </View>
+              <Divider
+                style={{
+                  borderWidth: 0.7,
+                  borderColor: Color.lightBrown,
+                  marginVertical: 10,
+                  backgroundColor: Color.lightBrown,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text>Maghrib</Text>
+                <Text>
+                  {Maghrib < time ? `${Maghrib} ` : `Menuju Maghrib ${Maghrib}`}
+                  (WIB)
+                </Text>
+              </View>
+              <Divider
+                style={{
+                  borderWidth: 0.7,
+                  borderColor: Color.lightBrown,
+                  marginVertical: 10,
+                  backgroundColor: Color.lightBrown,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text>Isya</Text>
+                <Text>{Isya > time ? `` : `Menuju Isya ${Isya}`} (WIB)</Text>
+              </View>
+              <Divider
+                style={{
+                  borderWidth: 0.7,
+                  borderColor: Color.lightBrown,
+                  marginVertical: 10,
+                  backgroundColor: Color.lightBrown,
+                }}
+              />
             </View>
           );
         }}
