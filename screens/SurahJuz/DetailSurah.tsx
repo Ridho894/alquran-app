@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import QuranKemenag from "quran-kemenag";
 import { Verse } from "quran-kemenag/dist/intefaces";
 import { View, Text, ScrollView, FlatList, SafeAreaView } from "react-native";
-import { Color } from "../utils/Color";
+import { Color } from "../../utils/Color";
 
 interface DetailScreenProps {
   navigation: any;

@@ -7,12 +7,13 @@ import Home from "../screens/Home";
 import { Feather } from "@expo/vector-icons";
 import { Color } from "../utils/Color";
 import DashboardSurah from "../screens/SurahJuz/DashboardSurah";
-import DetailSurah from "../screens/DetailSurah";
+import DetailSurah from "../screens/SurahJuz/DetailSurah";
 import PrayerSchedule from "../screens/PrayerSchedule";
 import DashboardJuz from "../screens/SurahJuz/DashboardJuz";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Dashboard from "../screens/SurahJuz/Dashboard";
 import DailyDoa from "../screens/SurahJuz/DailyDoa";
+import News from "../screens/News/News";
 
 const Stack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -83,6 +84,14 @@ export const DoaStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="DailyDoa" component={DailyDoa} />
+    </Stack.Navigator>
+  );
+};
+
+export const NewsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="News" component={News} />
     </Stack.Navigator>
   );
 };
