@@ -62,7 +62,7 @@ const DashboardSurah = (props: HomeScreenProps) => {
               </View>
               <View style={{ left: 20 }}>
                 <Text>{props.data.surah_name}</Text>
-                <Text>{`${props.data.surah_name_bahasa} ${props.data.surah_verse_count}`}</Text>
+                <Text>{`${props.data.surah_name_bahasa} (${props.data.surah_verse_count})`}</Text>
               </View>
             </View>
             <View>

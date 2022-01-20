@@ -17,6 +17,7 @@
     "expo-status-bar": "~1.1.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "prayertiming": "^1.0.0",
     "quran-kemenag": "^1.0.12",
     "react": "17.0.1",
     "react-dom": "17.0.1",
