@@ -4,6 +4,7 @@ import moment from "moment";
 import { formatDateCompare, getHourAndMinutes, unixTime } from "../utils/Date";
 import { Divider } from "react-native-paper";
 import { Color } from "../utils/Color";
+import Loading from "../components/Loading";
 
 interface Compare {
   firstTime: Date;
@@ -12,12 +13,13 @@ interface Compare {
 
 const PrayerSchedule = ({ dateNow }: any) => {
   const [time, setTime] = useState("");
+  const [loading, setLoading] = useState(true);
   const date = new Date();
   const Hours = date.getHours();
   const Minutes = date.getMinutes();
-  const full = date.getTime();
   const [timeSchedule, setTimeSchedule] = useState<any>({});
   const getMyData = async () => {
+    setLoading(true);
     const url = await fetch(
       `https://api.pray.zone/v2/times/today.json?city=yogyakarta`
     );
@@ -30,7 +32,10 @@ const PrayerSchedule = ({ dateNow }: any) => {
   };
   useEffect(() => {
     getMyData();
-  }, []);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, [loading]);
   const compareDate = (props: Compare) => {
     return (
       Date.parse(`${formatDateCompare(date)}`) >
@@ -46,6 +51,7 @@ const PrayerSchedule = ({ dateNow }: any) => {
   return (
     <View style={{ margin: 20 }}>
       <FlatList
+        keyExtractor={(s) => `${s.date.timestamp}`}
         data={timeSchedule}
         renderItem={({ item }) => {
           const Shubuh = item.times.Fajr;
@@ -53,10 +59,6 @@ const PrayerSchedule = ({ dateNow }: any) => {
           const Ashar = item.times.Asr;
           const Maghrib = item.times.Maghrib;
           const Isya = item.times.Isha;
-          if (`${Hours}:${Minutes}` > Shubuh) {
-            console.log("Menuju Shubuh");
-          }
-          console.log(Shubuh, `${Hours}:${Minutes}`);
           return (
             <View key={item.date.gregorian}>
               <View>
@@ -89,7 +91,13 @@ const PrayerSchedule = ({ dateNow }: any) => {
                 }}
               >
                 <Text>Shubuh</Text>
-                <Text>{`${Hours}:${Minutes}` > Isya || `${Hours}:${Minutes}` < Shubuh ? `Menuju Shubuh ${Shubuh}` : Shubuh} (WIB)</Text>
+                <Text>
+                  {`${Hours}:${Minutes}` > Isya ||
+                  `${Hours}:${Minutes}` < Shubuh
+                    ? `Menuju Shubuh ${Shubuh}`
+                    : Shubuh}{" "}
+                  (WIB)
+                </Text>
               </View>
               <Divider
                 style={{
@@ -106,7 +114,13 @@ const PrayerSchedule = ({ dateNow }: any) => {
                 }}
               >
                 <Text>Dhuhur</Text>
-                <Text>{`${Hours}:${Minutes}` > Shubuh || `${Hours}:${Minutes}` < Dhuhur ? `Menuju Dhuhur ${Shubuh}` : Shubuh} (WIB)</Text>
+                <Text>
+                  {`${Hours}:${Minutes}` > Shubuh ||
+                  `${Hours}:${Minutes}` < Dhuhur
+                    ? `Menuju Dhuhur ${Shubuh}`
+                    : Shubuh}{" "}
+                  (WIB)
+                </Text>
               </View>
               <Divider
                 style={{

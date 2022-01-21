@@ -50,7 +50,9 @@ const Home = (props: HomeProps) => {
       <View style={{ margin: 20 }}>
         <FlatList
           data={location}
+          keyExtractor={(s) => `${s.postalCode}`}
           renderItem={({ item }) => {
+            console.log(location);
             return (
               <Fragment>
                 <TimeBox regionName={item.city} />
