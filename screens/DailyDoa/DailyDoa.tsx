@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
-import data from "../../utils/Daily-Doa.json";
+import data from "../../data/Daily-Doa.json";
 import { List } from "react-native-paper";
 
 const DailyDoa = () => {

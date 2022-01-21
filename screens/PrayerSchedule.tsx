@@ -13,9 +13,10 @@ interface Compare {
 const PrayerSchedule = ({ dateNow }: any) => {
   const [time, setTime] = useState("");
   const date = new Date();
-
+  const Hours = date.getHours();
+  const Minutes = date.getMinutes();
+  const full = date.getTime();
   const [timeSchedule, setTimeSchedule] = useState<any>({});
-  console.log(timeSchedule);
   const getMyData = async () => {
     const url = await fetch(
       `https://api.pray.zone/v2/times/today.json?city=yogyakarta`
@@ -52,10 +53,10 @@ const PrayerSchedule = ({ dateNow }: any) => {
           const Ashar = item.times.Asr;
           const Maghrib = item.times.Maghrib;
           const Isya = item.times.Isha;
-          // if (time < Isya) {
-          //   console.log("Menuju Isya");
-          // }
-          console.log(time)
+          if (`${Hours}:${Minutes}` > Shubuh) {
+            console.log("Menuju Shubuh");
+          }
+          console.log(Shubuh, `${Hours}:${Minutes}`);
           return (
             <View key={item.date.gregorian}>
               <View>
@@ -88,7 +89,7 @@ const PrayerSchedule = ({ dateNow }: any) => {
                 }}
               >
                 <Text>Shubuh</Text>
-                <Text>{Shubuh} (WIB)</Text>
+                <Text>{`${Hours}:${Minutes}` > Isya || `${Hours}:${Minutes}` < Shubuh ? `Menuju Shubuh ${Shubuh}` : Shubuh} (WIB)</Text>
               </View>
               <Divider
                 style={{
@@ -105,7 +106,7 @@ const PrayerSchedule = ({ dateNow }: any) => {
                 }}
               >
                 <Text>Dhuhur</Text>
-                <Text>{Dhuhur} (WIB)</Text>
+                <Text>{`${Hours}:${Minutes}` > Shubuh || `${Hours}:${Minutes}` < Dhuhur ? `Menuju Dhuhur ${Shubuh}` : Shubuh} (WIB)</Text>
               </View>
               <Divider
                 style={{

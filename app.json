@@ -4,11 +4,11 @@
     "slug": "al-quran",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/quran.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/quran.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

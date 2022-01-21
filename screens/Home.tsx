@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Entypo, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   View,
@@ -52,12 +52,9 @@ const Home = (props: HomeProps) => {
           data={location}
           renderItem={({ item }) => {
             return (
-              <>
-                <TimeBox
-                  onPress={() => props.navigation.navigate("PrayerSchedule")}
-                  regionName={item.city}
-                />
-              </>
+              <Fragment>
+                <TimeBox regionName={item.city} />
+              </Fragment>
             );
           }}
         />
@@ -70,18 +67,22 @@ const Home = (props: HomeProps) => {
             marginVertical: 20,
           }}
         >
-          <View style={{ flexDirection: "column", alignItems: "center" }}>
-            <View
-              style={{
-                backgroundColor: Color.lightBrown,
-                padding: 10,
-                borderRadius: 10,
-              }}
-            >
-              <Ionicons name={"md-time-outline"} size={50} color="white" />
+          <TouchableWithoutFeedback
+            onPress={() => props.navigation.navigate("PrayerSchedule")}
+          >
+            <View style={{ flexDirection: "column", alignItems: "center" }}>
+              <View
+                style={{
+                  backgroundColor: Color.lightBrown,
+                  padding: 10,
+                  borderRadius: 10,
+                }}
+              >
+                <Ionicons name={"md-time-outline"} size={50} color="white" />
+              </View>
+              <Text>PRAYER TIME</Text>
             </View>
-            <Text>PRAYER TIME</Text>
-          </View>
+          </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
             onPress={() =>
               props.navigation.navigate("DoaStack", { screen: "DailyDoa" })

@@ -12,7 +12,7 @@ import PrayerSchedule from "../screens/PrayerSchedule";
 import DashboardJuz from "../screens/SurahJuz/DashboardJuz";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Dashboard from "../screens/SurahJuz/Dashboard";
-import DailyDoa from "../screens/SurahJuz/DailyDoa";
+import DailyDoa from "../screens/DailyDoa/DailyDoa";
 import News from "../screens/News/News";
 
 const Stack = createNativeStackNavigator();
