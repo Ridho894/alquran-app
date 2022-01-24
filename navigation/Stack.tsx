@@ -14,6 +14,9 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import Dashboard from "../screens/SurahJuz/Dashboard";
 import DailyDoa from "../screens/DailyDoa/DailyDoa";
 import News from "../screens/News/News";
+import Tahlil from "../screens/Tahlil/Tahlil";
+import Wirid from "../screens/Wirid/Wirid";
+import AsmaulHusna from "../screens/AsmaulHusna/AsmaulHusna";
 
 const Stack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -92,6 +95,30 @@ export const NewsStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="News" component={News} />
+    </Stack.Navigator>
+  );
+};
+
+export const TahlilStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Tahlil" component={Tahlil} />
+    </Stack.Navigator>
+  );
+};
+
+export const WiridStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Wirid" component={Wirid} />
+    </Stack.Navigator>
+  );
+};
+
+export const AsmaulHusnaStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="AsmaulHusna" component={AsmaulHusna} />
     </Stack.Navigator>
   );
 };

@@ -60,10 +60,11 @@ const Home = (props: HomeProps) => {
             );
           }}
         />
+        {/* Section 1 */}
         <View
           style={{
             flexDirection: "row",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "space-between",
             flexWrap: "wrap",
             marginVertical: 20,
@@ -82,7 +83,7 @@ const Home = (props: HomeProps) => {
               >
                 <Ionicons name={"md-time-outline"} size={50} color="white" />
               </View>
-              <Text>PRAYER TIME</Text>
+              <Text style={{ textAlign: "center" }}>PRAYER{"\n"}TIME</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
@@ -119,6 +120,80 @@ const Home = (props: HomeProps) => {
             </View>
             <Text>NEWS</Text>
           </View>
+        </View>
+        {/* Section 2 */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+          }}
+        >
+          <TouchableWithoutFeedback
+            onPress={() =>
+              props.navigation.navigate("TahlilStack", {
+                screen: "Tahlil",
+              })
+            }
+          >
+            <View style={{ flexDirection: "column", alignItems: "center" }}>
+              <View
+                style={{
+                  backgroundColor: Color.lightBrown,
+                  padding: 10,
+                  borderRadius: 10,
+                }}
+              >
+                <Ionicons name={"md-time-outline"} size={50} color="white" />
+              </View>
+              <Text>TAHLIL</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={() =>
+              props.navigation.navigate("AsmaulHusnaStack", {
+                screen: "AsmaulHusna",
+              })
+            }
+          >
+            <View style={{ flexDirection: "column", alignItems: "center" }}>
+              <View
+                style={{
+                  backgroundColor: Color.lightBrown,
+                  padding: 10,
+                  borderRadius: 10,
+                }}
+              >
+                <Entypo name={"book"} size={50} color="white" />
+              </View>
+              <Text style={{ textAlign: "center" }}>ASMAUL{"\n"}HUSNA</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={() =>
+              props.navigation.navigate("WiridStack", {
+                screen: "Wirid",
+              })
+            }
+          >
+            <View style={{ flexDirection: "column", alignItems: "center" }}>
+              <View
+                style={{
+                  backgroundColor: Color.lightBrown,
+                  padding: 10,
+                  borderRadius: 10,
+                }}
+              >
+                <MaterialCommunityIcons
+                  name={"newspaper"}
+                  size={50}
+                  color="white"
+                />
+              </View>
+              <Text>WIRID</Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
       </View>
     </ScrollView>

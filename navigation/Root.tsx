@@ -5,7 +5,14 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Feather } from "@expo/vector-icons";
 import moment from "moment";
-import { DoaStack, HomeStack, NewsStack } from "./Stack";
+import {
+  AsmaulHusnaStack,
+  DoaStack,
+  HomeStack,
+  NewsStack,
+  TahlilStack,
+  WiridStack,
+} from "./Stack";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +34,21 @@ const Root = ({ navigation }: StackScreenProps<any>) => {
         <Stack.Screen
           name="DoaStack"
           component={DoaStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TahlilStack"
+          component={TahlilStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AsmaulHusnaStack"
+          component={AsmaulHusnaStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="WiridStack"
+          component={WiridStack}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

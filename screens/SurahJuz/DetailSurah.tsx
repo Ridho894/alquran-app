@@ -62,9 +62,15 @@ const DetailSurah = (props: DetailScreenProps) => {
 
   return (
     <View>
-      <Text>{surah ? surah.surah_name : ""}</Text>
-      <Text>{surah ? surah.surah_name_bahasa : ""}</Text>
-      <Text>{surah ? `${surah.surah_verse_count} VERSES` : ""}</Text>
+      <Text style={{ textAlign: "center" }}>
+        {surah ? surah.surah_name : ""}
+      </Text>
+      <Text style={{ textAlign: "center" }}>
+        {surah ? surah.surah_name_bahasa : ""}
+      </Text>
+      <Text style={{ textAlign: "center" }}>
+        {surah ? `${surah.surah_verse_count} VERSES` : ""}
+      </Text>
       <FlatList
         data={verses}
         keyExtractor={(v) => v.verse_id}
