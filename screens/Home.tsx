@@ -52,7 +52,6 @@ const Home = (props: HomeProps) => {
           data={location}
           keyExtractor={(s) => `${s.postalCode}`}
           renderItem={({ item }) => {
-            console.log(location);
             return (
               <Fragment>
                 <TimeBox regionName={item.city} />
