@@ -13,10 +13,6 @@ interface SurahItemProps {
   onPress: () => void;
 }
 
-function checkAdult(age: any) {
-  return age >= 78;
-}
-
 const DashboardJuz = (props: HomeScreenProps) => {
   const [listOfSurah, setListOfSurah]: [
     listOfSurah: Surah[],

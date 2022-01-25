@@ -9,10 +9,19 @@ const DailyDoa = () => {
     <ScrollView>
       <View>
         {data.data.map((index) => (
-            <List.Accordion title={index.title} titleStyle={{color: Color.lightBrown}}> 
-              <List.Item title={index.arabic} titleNumberOfLines={10} />
-              <List.Item title={index.translation} titleNumberOfLines={10} />
-            </List.Accordion>
+          <List.Accordion
+            title={index.title}
+            style={{
+              marginTop: 10,
+              margin: 20,
+              backgroundColor: Color.lightBrown,
+              borderRadius: 10,
+            }}
+            titleStyle={{ color: Color.lightWhite }}
+          >
+            <List.Item title={index.arabic} titleNumberOfLines={10} />
+            <List.Item title={index.translation} titleNumberOfLines={10} />
+          </List.Accordion>
         ))}
       </View>
     </ScrollView>

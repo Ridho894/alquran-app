@@ -17,6 +17,7 @@ import News from "../screens/News/News";
 import Tahlil from "../screens/Tahlil/Tahlil";
 import Wirid from "../screens/Wirid/Wirid";
 import AsmaulHusna from "../screens/AsmaulHusna/AsmaulHusna";
+import About from "../screens/About/About";
 
 const Stack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -119,6 +120,14 @@ export const AsmaulHusnaStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="AsmaulHusna" component={AsmaulHusna} />
+    </Stack.Navigator>
+  );
+};
+
+export const AboutStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
 };

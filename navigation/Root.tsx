@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Feather } from "@expo/vector-icons";
 import moment from "moment";
 import {
+  AboutStack,
   AsmaulHusnaStack,
   DoaStack,
   HomeStack,
@@ -49,6 +50,11 @@ const Root = ({ navigation }: StackScreenProps<any>) => {
         <Stack.Screen
           name="WiridStack"
           component={WiridStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AboutStack"
+          component={AboutStack}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

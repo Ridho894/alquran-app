@@ -1,5 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Entypo, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Entypo,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import {
   View,
   Text,
@@ -103,22 +108,30 @@ const Home = (props: HomeProps) => {
               <Text>DO'A</Text>
             </View>
           </TouchableWithoutFeedback>
-          <View style={{ flexDirection: "column", alignItems: "center" }}>
-            <View
-              style={{
-                backgroundColor: Color.lightBrown,
-                padding: 10,
-                borderRadius: 10,
-              }}
-            >
-              <MaterialCommunityIcons
-                name={"newspaper"}
-                size={50}
-                color="white"
-              />
+          <TouchableWithoutFeedback
+            onPress={() =>
+              props.navigation.navigate("WiridStack", {
+                screen: "Wirid",
+              })
+            }
+          >
+            <View style={{ flexDirection: "column", alignItems: "center" }}>
+              <View
+                style={{
+                  backgroundColor: Color.lightBrown,
+                  padding: 10,
+                  borderRadius: 10,
+                }}
+              >
+                <MaterialCommunityIcons
+                  name={"newspaper"}
+                  size={50}
+                  color="white"
+                />
+              </View>
+              <Text>WIRID</Text>
             </View>
-            <Text>NEWS</Text>
-          </View>
+          </TouchableWithoutFeedback>
         </View>
         {/* Section 2 */}
         <View
@@ -171,8 +184,8 @@ const Home = (props: HomeProps) => {
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
             onPress={() =>
-              props.navigation.navigate("WiridStack", {
-                screen: "Wirid",
+              props.navigation.navigate("AboutStack", {
+                screen: "About",
               })
             }
           >
@@ -184,13 +197,9 @@ const Home = (props: HomeProps) => {
                   borderRadius: 10,
                 }}
               >
-                <MaterialCommunityIcons
-                  name={"newspaper"}
-                  size={50}
-                  color="white"
-                />
+                <AntDesign name={"questioncircle"} size={50} color="white" />
               </View>
-              <Text>WIRID</Text>
+              <Text>ABOUT</Text>
             </View>
           </TouchableWithoutFeedback>
         </View>

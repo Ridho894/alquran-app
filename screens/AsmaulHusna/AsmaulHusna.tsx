@@ -6,42 +6,54 @@ import data from "../../data/Asmaul-Husna.json";
 import { TextInput } from "react-native-paper";
 
 const AsmaulHusna = () => {
+  const [search, setSearch] = useState("");
   return (
     <ScrollView>
       <View style={{ margin: 20 }}>
-        <TextInput placeholder="Search" mode="outlined" />
+        <TextInput
+          placeholder="Search"
+          mode="outlined"
+          value={search}
+          onChangeText={(text) => setSearch(text)}
+        />
         <View
           style={{
             flexDirection: "row",
             flexWrap: "wrap",
             justifyContent: "space-between",
-            marginTop:10
+            marginTop: 10,
           }}
         >
-          {data.data.map((index) => (
-            <View
-              key={index.index}
-              style={{
-                backgroundColor: Color.darkRed,
-                width: Layouts.WidthScreen / 2.3,
-                borderRadius: 20,
-                paddingVertical: 30,
-                marginVertical: 10,
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {index.arabic}
-              </Text>
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {index.latin}
-              </Text>
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {index.translation_id}
-              </Text>
-            </View>
-          ))}
+          {search ? (
+            <></>
+          ) : (
+            <>
+              {data.data.map((index) => (
+                <View
+                  key={index.index}
+                  style={{
+                    backgroundColor: Color.darkRed,
+                    width: Layouts.WidthScreen / 2.3,
+                    borderRadius: 20,
+                    paddingVertical: 30,
+                    marginVertical: 10,
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    {index.arabic}
+                  </Text>
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    {index.latin}
+                  </Text>
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    {index.translation_id}
+                  </Text>
+                </View>
+              ))}
+            </>
+          )}
         </View>
       </View>
     </ScrollView>
