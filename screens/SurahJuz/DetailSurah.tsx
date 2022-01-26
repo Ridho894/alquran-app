@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import QuranKemenag from "quran-kemenag";
 import { Verse } from "quran-kemenag/dist/intefaces";
-import { View, Text, ScrollView, FlatList, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  FlatList,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import { Color } from "../../utils/Color";
+import Modal from "../../components/Modal";
 
 interface DetailScreenProps {
   navigation: any;
@@ -14,34 +22,49 @@ interface VerseItemProps {
 }
 
 const VerseItem = (props: VerseItemProps) => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [idSurah, setIdSurah] = useState<number>(0);
+  const handleOpenModal = () => {
+    setVisible(true);
+  };
   return (
-    <View style={{ paddingBottom: 20 }}>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
+    <Fragment>
+      <TouchableOpacity
+        onPress={() => {
+          setIdSurah(props.data.verse_number);
+          handleOpenModal();
         }}
       >
-        <Text
-          style={{
-            backgroundColor: Color.lightBrown,
-            padding: 5,
-            height: 30,
-            width: 30,
-            textAlign: "center",
-            borderRadius: 20,
-            color: "white",
-          }}
-        >
-          {props.data.verse_number}
-        </Text>
-        <Text style={{ fontSize: 20, margin: 10 }}>
-          {props.data.verse_arabic}
-        </Text>
-      </View>
-      <Text>{props.data.verse_bahasa}</Text>
-    </View>
+        <View style={{ paddingBottom: 20 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              style={{
+                backgroundColor: Color.lightBrown,
+                padding: 5,
+                height: 30,
+                width: 30,
+                textAlign: "center",
+                borderRadius: 20,
+                color: "white",
+              }}
+            >
+              {props.data.verse_number}
+            </Text>
+            <Text style={{ fontSize: 20, margin: 10 }}>
+              {props.data.verse_arabic}
+            </Text>
+          </View>
+          <Text>{props.data.verse_bahasa}</Text>
+        </View>
+      </TouchableOpacity>
+      <Modal visible={visible} onClose={() => setVisible(false)} />
+    </Fragment>
   );
 };
 

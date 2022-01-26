@@ -11,10 +11,12 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   FlatList,
+  LogBox,
 } from "react-native";
 import TimeBox from "../components/TimeBox";
 import { Color } from "../utils/Color";
 import * as Location from "expo-location";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface HomeProps {
   navigation: any;
@@ -47,10 +49,16 @@ const Home = (props: HomeProps) => {
   } else if (location) {
     text = JSON.stringify(location);
   }
+
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  }, []);
+
   return (
     <ScrollView
       style={{ backgroundColor: "white" }}
       showsVerticalScrollIndicator={false}
+      nestedScrollEnabled={true}
     >
       <View style={{ margin: 20 }}>
         <FlatList
@@ -63,6 +71,7 @@ const Home = (props: HomeProps) => {
               </Fragment>
             );
           }}
+          scrollEnabled={false}
         />
         {/* Section 1 */}
         <View
