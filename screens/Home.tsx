@@ -96,7 +96,7 @@ const Home = (props: HomeProps) => {
               >
                 <Ionicons name={"md-time-outline"} size={50} color="white" />
               </View>
-              <Text style={{ textAlign: "center" }}>PRAYER{"\n"}TIME</Text>
+              <Text style={{ textAlign: "center" }}>PRAYER{"\n"}TIMES</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
