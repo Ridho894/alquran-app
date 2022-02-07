@@ -10,6 +10,7 @@ const Tahlil = () => {
       <View>
         {data.data.map((index) => (
           <List.Accordion
+            key={index.id}
             title={index.title}
             style={{
               marginTop: 10,

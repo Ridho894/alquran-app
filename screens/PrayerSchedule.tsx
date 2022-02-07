@@ -4,12 +4,6 @@ import moment from "moment";
 import { formatDateCompare, getHourAndMinutes, unixTime } from "../utils/Date";
 import { Divider } from "react-native-paper";
 import { Color } from "../utils/Color";
-import Loading from "../components/Loading";
-
-interface Compare {
-  firstTime: Date;
-  lastTime: Date;
-}
 
 const PrayerSchedule = ({ dateNow }: any) => {
   const [time, setTime] = useState("");
@@ -36,18 +30,6 @@ const PrayerSchedule = ({ dateNow }: any) => {
       setLoading(false);
     }, 2000);
   }, [loading]);
-  const compareDate = (props: Compare) => {
-    return (
-      Date.parse(`${formatDateCompare(date)}`) >
-        Date.parse(
-          `${unixTime(dateNow)} ${getHourAndMinutes(props.firstTime)}:00`
-        ) &&
-      Date.parse(`${formatDateCompare(date)}`) <
-        Date.parse(
-          `${unixTime(dateNow)} ${getHourAndMinutes(props.lastTime)}:00`
-        )
-    );
-  };
   return (
     <View style={{ margin: 20 }}>
       <FlatList
@@ -92,11 +74,13 @@ const PrayerSchedule = ({ dateNow }: any) => {
               >
                 <Text>Shubuh</Text>
                 <Text>
-                  {`${Hours}:${Minutes}` > Isya ||
+                  {/* if time going to shubuh and after isya, print menuju Shubuh */}
+                  {`${Hours}:${Minutes}` > Isya &&
                   `${Hours}:${Minutes}` < Shubuh
                     ? `Menuju Shubuh ${Shubuh}`
                     : Shubuh}{" "}
-                  (WIB)
+                  {/* then if time pass Shubuh, erase menuju Shubuh */}
+                  {`${Hours}:${Minutes}` > Shubuh ? `${Shubuh} (WIB)` : ""}
                 </Text>
               </View>
               <Divider
@@ -115,10 +99,9 @@ const PrayerSchedule = ({ dateNow }: any) => {
               >
                 <Text>Dhuhur</Text>
                 <Text>
-                  {`${Hours}:${Minutes}` > Shubuh ||
-                  `${Hours}:${Minutes}` < Dhuhur
-                    ? `Menuju Dhuhur ${Shubuh}`
-                    : Shubuh}{" "}
+                  {`${Hours}:${Minutes}` < Dhuhur
+                    ? `Menuju Dhuhur ${Dhuhur}`
+                    : Dhuhur}{" "}
                   (WIB)
                 </Text>
               </View>
@@ -137,7 +120,15 @@ const PrayerSchedule = ({ dateNow }: any) => {
                 }}
               >
                 <Text>Ashar</Text>
-                <Text>{Ashar} (WIB)</Text>
+                <Text>
+                  {/* if time going to ashar, print menuju ashar */}
+                  {`${Hours}:${Minutes}` < Ashar
+                    ? `Menuju Ashar ${Ashar}`
+                    : Ashar}{" "}
+                  {/* then if time pass ashar, erase menuju ashar */}
+                  {`${Hours}:${Minutes}` > Ashar ? `${Ashar} (WIB)` : ""}
+                  (WIB)
+                </Text>
               </View>
               <Divider
                 style={{
@@ -155,7 +146,13 @@ const PrayerSchedule = ({ dateNow }: any) => {
               >
                 <Text>Maghrib</Text>
                 <Text>
-                  {Maghrib < time ? `${Maghrib} ` : `Menuju Maghrib ${Maghrib}`}
+                  {/* if time going to maghrib and after ashar, print menuju Maghrib */}
+                  {`${Hours}:${Minutes}` > Ashar &&
+                  `${Hours}:${Minutes}` < Maghrib
+                    ? `Menuju Maghrib ${Maghrib}`
+                    : Maghrib}{" "}
+                  {/* then if time pass Maghrib, erase menuju Maghrib */}
+                  {`${Hours}:${Minutes}` > Maghrib ? `${Maghrib} (WIB)` : ""}
                   (WIB)
                 </Text>
               </View>
@@ -174,7 +171,16 @@ const PrayerSchedule = ({ dateNow }: any) => {
                 }}
               >
                 <Text>Isya</Text>
-                <Text>{Isya > time ? `` : `Menuju Isya ${Isya}`} (WIB)</Text>
+                <Text>
+                  {/* if time going to isya and after maghrib, print menuju Isya */}
+                  {`${Hours}:${Minutes}` > Maghrib &&
+                  `${Hours}:${Minutes}` < Isya
+                    ? `Menuju Isya ${Isya}`
+                    : Isya}{" "}
+                  {/* then if time pass Isya, erase menuju Isya */}
+                  {`${Hours}:${Minutes}` > Isya ? `${Isya} (WIB)` : ""}
+                  (WIB)
+                </Text>
               </View>
               <Divider
                 style={{

@@ -6,7 +6,15 @@ import data from "../../data/Asmaul-Husna.json";
 import { TextInput } from "react-native-paper";
 
 const AsmaulHusna = () => {
+  const [dataAsmaulHusna, setDataAsmaulHusna] = useState(data.data);
   const [search, setSearch] = useState("");
+  // make search data asmaul husna
+  const searchData = (search: any) => {
+    const newData = data.data.filter((item) => {
+      return item.translation_id.toLowerCase().includes(search.toLowerCase());
+    });
+    setDataAsmaulHusna(newData);
+  };
   return (
     <ScrollView>
       <View style={{ margin: 20 }}>
@@ -14,7 +22,11 @@ const AsmaulHusna = () => {
           placeholder="Search"
           mode="outlined"
           value={search}
-          onChangeText={(text) => setSearch(text)}
+          // searchable
+          onChangeText={(text) => {
+            setSearch(text);
+            searchData(text);
+          }}
         />
         <View
           style={{
@@ -25,10 +37,35 @@ const AsmaulHusna = () => {
           }}
         >
           {search ? (
-            <></>
+            <>
+              {dataAsmaulHusna.map((index) => (
+                <View
+                  key={index.index}
+                  style={{
+                    backgroundColor: Color.darkRed,
+                    width: Layouts.WidthScreen / 2.3,
+                    borderRadius: 20,
+                    paddingVertical: 30,
+                    marginVertical: 10,
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    {index.arabic}
+                  </Text>
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    {index.latin}
+                  </Text>
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    {index.translation_id}
+                  </Text>
+                </View>
+              ))}
+            </>
           ) : (
             <>
-              {data.data.map((index) => (
+              {dataAsmaulHusna.map((index) => (
                 <View
                   key={index.index}
                   style={{

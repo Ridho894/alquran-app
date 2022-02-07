@@ -10,6 +10,7 @@ const Wirid = () => {
       <View>
         {data.data.map((index) => (
           <View
+            key={index.id}
             style={{
               backgroundColor: Color.darkRed,
               marginVertical: 10,
