@@ -32,20 +32,21 @@ export const HomeStack = ({ navigation }: any) => {
         name="Home"
         component={Home}
         options={{
-          headerTitleAlign: "center",
-          headerRight: () => (
-            <TouchableWithoutFeedback>
-              <Feather name="compass" color="black" size={25} />
-            </TouchableWithoutFeedback>
-          ),
-          headerLeft: () => (
-            <Feather
-              name="book-open"
-              color="black"
-              size={25}
-              onPress={() => navigation.navigate("Dashboard")}
-            />
-          ),
+          headerShown: false,
+          // headerTitleAlign: "center",
+          // headerRight: () => (
+          //   <TouchableWithoutFeedback>
+          //     <Feather name="compass" color="black" size={25} />
+          //   </TouchableWithoutFeedback>
+          // ),
+          // headerLeft: () => (
+          //   <Feather
+          //     name="book-open"
+          //     color="black"
+          //     size={25}
+          //     onPress={() => navigation.navigate("Dashboard")}
+          //   />
+          // ),
         }}
       />
       <Stack.Screen
