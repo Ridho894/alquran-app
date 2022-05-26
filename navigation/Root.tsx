@@ -11,6 +11,7 @@ import {
   DoaStack,
   HomeStack,
   NewsStack,
+  SurahStack,
   TahlilStack,
   WiridStack,
 } from "./Stack";
@@ -22,6 +23,11 @@ const Root = ({ navigation }: StackScreenProps<any>) => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={"Root"}>
+        <Stack.Screen
+          name="SurahStack"
+          component={SurahStack}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="HomeStack"
           component={HomeStack}

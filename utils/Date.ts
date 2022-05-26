@@ -1,6 +1,6 @@
 import isEmpty from "lodash/isEmpty";
 import moment from "moment";
-export const formatDay = (params:any) => {
+export const formatDay = (params: any) => {
   switch (params) {
     case "Sunday":
       return "Ahad";
@@ -21,16 +21,16 @@ export const formatDay = (params:any) => {
   }
 };
 
-export const getHourAndMinutes = (params:any) =>
+export const getHourAndMinutes = (params: any) =>
   isEmpty(params) ? null : params.split(" ")[0];
 
-export const unixTime = (date:any) =>
+export const unixTime = (date: any) =>
   isEmpty(date) ? null : moment.unix(date).format("MM/DD/YYYY");
 
-export const formatDateCompare = (date:any) =>
+export const formatDateCompare = (date: any) =>
   moment(date).format("MM/DD/YYYY HH:mm:ss");
 
-export const setDurationTime = (timeFinish:any) => {
+export const setDurationTime = (timeFinish: any) => {
   const date = new Date();
   const formatDate = moment(date).format("YYYY-MM-DD");
   let timeStartNew = moment(date).format("YYYY-MM-DD HH:mm:ss");
@@ -40,7 +40,7 @@ export const setDurationTime = (timeFinish:any) => {
   const ms = moment(`${formatDate} ${timeFinishNew}:00`).diff(
     moment(`${timeStartNew}`)
   );
-  const minutes = moment
+  const minutes: any = moment
     .utc(
       moment(`${formatDate} ${timeFinishNew}:00`).diff(
         moment(`${timeStartNew}`)

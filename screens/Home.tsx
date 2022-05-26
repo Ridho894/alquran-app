@@ -1,19 +1,10 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, ImageBackground, Image } from "react-native";
+import { View, ImageBackground, Image } from "react-native";
 import { Button } from "react-native-paper";
+import { StackScreenProps } from "@react-navigation/stack";
 import { Layouts } from "../utils/Layouts";
 
-const menus = [
-  { id: 1, title: "Baca Quran", href: "BacaQuran" },
-  { id: 2, title: "Asmaul Husna", href: "BacaQuran" },
-  { id: 3, title: "Doa Harian", href: "BacaQuran" },
-  { id: 4, title: "Tahlil", href: "BacaQuran" },
-  { id: 5, title: "Wirid", href: "BacaQuran" },
-];
-
-const Home = (props: any) => {
-  const navigation = useNavigation();
+const Home = ({ navigation }: StackScreenProps<any>) => {
   return (
     <ImageBackground
       source={require("../assets/bg.jpg")}
@@ -36,24 +27,85 @@ const Home = (props: any) => {
           source={require("../assets/quran.png")}
           style={{ width: 50, height: 50, marginBottom: 30 }}
         />
-        {menus.map((menu) => (
-          <Button
-            color="white"
-            key={menu.id}
-            labelStyle={{ color: "white" }}
-            style={{
-              borderColor: "white",
-              borderWidth: 2,
-              marginVertical: 10,
-              width: Layouts.WidthScreen / 1.5,
-            }}
-            onPress={() =>
-              props.navigation.navigate("DoaStack", { screen: "DailyDoa" })
-            }
-          >
-            {menu.title}
-          </Button>
-        ))}
+        <Button
+          color="white"
+          labelStyle={{ color: "white" }}
+          style={{
+            borderColor: "white",
+            borderWidth: 2,
+            marginVertical: 10,
+            width: Layouts.WidthScreen / 1.5,
+          }}
+          onPress={() =>
+            navigation.navigate("SurahStack", {
+              screen: "DashboardSurah",
+            })
+          }
+        >
+          Baca Quran
+        </Button>
+        <Button
+          color="white"
+          labelStyle={{ color: "white" }}
+          style={{
+            borderColor: "white",
+            borderWidth: 2,
+            marginVertical: 10,
+            width: Layouts.WidthScreen / 1.5,
+          }}
+          onPress={() =>
+            navigation.navigate("DoaStack", { screen: "DailyDoa" })
+          }
+        >
+          Doa Harian
+        </Button>
+        <Button
+          color="white"
+          labelStyle={{ color: "white" }}
+          style={{
+            borderColor: "white",
+            borderWidth: 2,
+            marginVertical: 10,
+            width: Layouts.WidthScreen / 1.5,
+          }}
+          onPress={() =>
+            navigation.navigate("AsmaulHusnaStack", {
+              screen: "AsmaulHusna",
+            })
+          }
+        >
+          Asmaul Husna
+        </Button>
+        <Button
+          color="white"
+          labelStyle={{ color: "white" }}
+          style={{
+            borderColor: "white",
+            borderWidth: 2,
+            marginVertical: 10,
+            width: Layouts.WidthScreen / 1.5,
+          }}
+          onPress={() =>
+            navigation.navigate("HomeStack", { screen: "PrayerSchedule" })
+          }
+        >
+          Jadwal Sholat
+        </Button>
+        <Button
+          color="white"
+          labelStyle={{ color: "white" }}
+          style={{
+            borderColor: "white",
+            borderWidth: 2,
+            marginVertical: 10,
+            width: Layouts.WidthScreen / 1.5,
+          }}
+          onPress={() =>
+            navigation.navigate("DoaStack", { screen: "DailyDoa" })
+          }
+        >
+          Tahlil & Wirid
+        </Button>
       </View>
     </ImageBackground>
   );
