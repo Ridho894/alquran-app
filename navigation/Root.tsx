@@ -24,13 +24,13 @@ const Root = ({ navigation }: StackScreenProps<any>) => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={"Root"}>
         <Stack.Screen
-          name="SurahStack"
-          component={SurahStack}
+          name="HomeStack"
+          component={HomeStack}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="HomeStack"
-          component={HomeStack}
+          name="SurahStack"
+          component={SurahStack}
           options={{ headerShown: false }}
         />
         <Stack.Screen

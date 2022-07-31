@@ -19,6 +19,7 @@ const DailyDoa = () => {
     <ScrollView>
       <View>
         <TextInput
+          autoComplete={false}
           placeholder="Search"
           mode="outlined"
           value={search}
@@ -31,8 +32,9 @@ const DailyDoa = () => {
         />
         {search ? (
           <>
-            {dataDoa.map((index) => (
+            {dataDoa.map((index, i) => (
               <List.Accordion
+                key={i}
                 title={index.title}
                 style={{
                   marginTop: 10,
@@ -49,8 +51,9 @@ const DailyDoa = () => {
           </>
         ) : (
           <>
-            {dataDoa.map((index) => (
+            {dataDoa.map((index, i) => (
               <List.Accordion
+                key={i}
                 title={index.title}
                 style={{
                   marginTop: 10,
